@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south"
 }
 // Create VPC
 resource "aws_vpc" "my_VPC" {
@@ -70,9 +70,8 @@ resource "aws_security_group" "my_SG" {
 // Create EC2 Instance
 
 resource "aws_instance" "my_EC2_Instance" {
-  ami           = "ami-03c7d01cf4dedc891" # us-east-1
-  instance_type = "t2.micro"
-  key_name   = "devops"
+  ami           = "ami-00bb6a80f01f03502" # ap-south
+  instance_type = "t3.micro"
   subnet_id = aws_subnet.my_Publicsubnet.id
   vpc_security_group_ids = [aws_security_group.my_SG.id]
 
