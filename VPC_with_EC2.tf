@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south"
+  region = "ap-south-1"
 }
 // Create VPC
 resource "aws_vpc" "my_VPC" {
@@ -55,7 +55,7 @@ resource "aws_security_group" "my_SG" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  egress {
+  ingress {
     from_port        = 0
     to_port          = 0
     protocol         = "tcp"
@@ -70,7 +70,7 @@ resource "aws_security_group" "my_SG" {
 // Create EC2 Instance
 
 resource "aws_instance" "my_EC2_Instance" {
-  ami           = "ami-00bb6a80f01f03502" # ap-south
+  ami           = "ami-00bb6a80f01f03502" # ap-south-1
   instance_type = "t3.micro"
   subnet_id = aws_subnet.my_Publicsubnet.id
   vpc_security_group_ids = [aws_security_group.my_SG.id]
