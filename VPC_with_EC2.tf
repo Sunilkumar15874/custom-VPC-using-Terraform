@@ -42,6 +42,11 @@ resource "aws_route_table_association" "my-rt-association" {
   route_table_id = aws_route_table.my_routetable.id
 }
 
+  tags = {
+    Name = "my-rt-association"
+  }
+}
+
 // Create Security Group
 resource "aws_security_group" "my_SG" {
   name        = "my_SG"
@@ -75,4 +80,9 @@ resource "aws_instance" "my_EC2_Instance" {
   subnet_id = aws_subnet.my_Publicsubnet.id
   vpc_security_group_ids = [aws_security_group.my_SG.id]
 
+}
+
+tags = {
+    Name = "my_EC2_Instance"
+  }
 }
